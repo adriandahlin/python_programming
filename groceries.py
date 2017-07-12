@@ -33,7 +33,7 @@ print("THERE ARE", len(products), "PRODUCTS IN THE SHOPPING CART:")
 def product_name(product):
     return product["name"]
 #for product in products:
-    print(product_name(product))
+#    print(product_name(product))
 
 ## 3. Print in alphabetical order the name of each product.
 def sort_by_name(product):
