@@ -1,4 +1,5 @@
 import time
+import code
 
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
@@ -32,6 +33,7 @@ while var == 0:
         item_ids.append(num)
     if num == 'DONE':
         break
+#.interact(local=locals())
 
 ## Print Receipt
 print("------------")
@@ -43,15 +45,17 @@ print("------------")
 #print("Items purchased today:")
 print("Item ids =", item_ids)
 
-def teams_from(city):
-  return [team for team in teams if team["city"] == city]
+def output(id):
+  return [product for product in products if product["id"] == id]
 
 def id_to_name(id):
   matches = []
   for product in products:
       if product["id"] == id:
           matches.append(product)
-  return matches
+  for match in matches:
+                print("+ " + product["name"] + " (${0:.2f})".format(product["price"]))
+
 print(id_to_name(1))
 #for item in item_ids:
 #    print(id_to_name(item))
