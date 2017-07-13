@@ -25,11 +25,11 @@ products = [
 
 
 var = 0
-items = []
+item_ids = []
 while var == 0:
     num = input("Please input a product identifier or 'DONE' if there are no more items: ")
     if num != "DONE":
-        items.append(num)
+        item_ids.append(num)
     if num == 'DONE':
         break
 
@@ -40,9 +40,25 @@ print("Phone: (123) 456-7890")
 print("Purchase Time:", time.strftime("%H:%M:%S"), time.strftime("%d/%m/%Y"))
 print("------------")
 
-#items
-print("Items purchased today:")
-print(items)
+#print("Items purchased today:")
+print("Item ids =", item_ids)
+
+def teams_from(city):
+  return [team for team in teams if team["city"] == city]
+
+def id_to_name(id):
+  matches = []
+  for product in products:
+      if product["id"] == id:
+          matches.append(product)
+  return matches
+print(id_to_name(1))
+#for item in item_ids:
+#    print(id_to_name(item))
+# don't know why the following doesn't work:
+#for product in products:
+#    if product["id"] in item_ids:
+#        print("+ " + product["name"] + " (${0:.2f}".format(product["price"]) + ")")
 
 print("------------")
 print("Thank you for shopping at Foods-R-Us!")
