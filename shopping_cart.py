@@ -24,23 +24,25 @@ products = [
 ]
 
 
-#items = []
-#item = input("Please input a product identifier or 'DONE' if there are not more items: ")
+var = 0
+items = []
+while var == 0:
+    num = input("Please input a product identifier or 'DONE' if there are no more items: ")
+    if num != "DONE":
+        items.append(num)
+    if num == 'DONE':
+        break
 
 ## Print Receipt
-print("| | | | | | |")
+print("------------")
 print("Foods-R-Us")
-print("(123) 456-7890")
-print(time.strftime("%H:%M:%S"), time.strftime("%d/%m/%Y"))
+print("Phone: (123) 456-7890")
+print("Purchase Time:", time.strftime("%H:%M:%S"), time.strftime("%d/%m/%Y"))
 print("------------")
 
 #items
-var = 0
-while var == 0:
-    num = input("Please input a product identifier or 'DONE' if there are no more items: ")
-    print(num)
-    if num == 'DONE':
-        break
+print("Items purchased today:")
+print(items)
 
 print("------------")
 print("Thank you for shopping at Foods-R-Us!")
