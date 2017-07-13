@@ -25,7 +25,7 @@ products = [
 
 
 #items = []
-item = input("Please input a product identifier, or 'DONE' if there are not more items: ")
+#item = input("Please input a product identifier or 'DONE' if there are not more items: ")
 
 ## Print Receipt
 print("| | | | | | |")
@@ -35,7 +35,12 @@ print(time.strftime("%H:%M:%S"), time.strftime("%d/%m/%Y"))
 print("------------")
 
 #items
-print(item)
+var = 0
+while var == 0:
+    num = input("Please input a product identifier or 'DONE' if there are no more items: ")
+    print(num)
+    if num == 'DONE':
+        break
 
 print("------------")
 print("Thank you for shopping at Foods-R-Us!")
