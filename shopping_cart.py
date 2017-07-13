@@ -1,5 +1,6 @@
 import time
 import code
+# code.interact(local=locals())
 
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
@@ -33,7 +34,6 @@ while var == 0:
         item_ids.append(num)
     if num == 'DONE':
         break
-#.interact(local=locals())
 
 ## Print Receipt
 print("------------")
@@ -42,27 +42,27 @@ print("Phone: (123) 456-7890")
 print("Purchase Time:", time.strftime("%H:%M:%S"), time.strftime("%d/%m/%Y"))
 print("------------")
 
-#print("Items purchased today:")
-print("Item ids =", item_ids)
+print("Items purchased today:")
 
-def output(id):
-  return [product for product in products if product["id"] == id]
+#def output(id):
+#  return [product for product in products if product["id"] == id]
 
 def id_to_name(id):
-  matches = []
-  for product in products:
-      if product["id"] == id:
-          matches.append(product)
-  for match in matches:
-                print("+ " + product["name"] + " (${0:.2f})".format(product["price"]))
+    for product in products:
+        if product["id"] == int(id):
+            print("+ " + product["name"] + " (${0:.2f})".format(product["price"]))
 
-print(id_to_name(1))
-#for item in item_ids:
-#    print(id_to_name(item))
+for item in item_ids:
+    print(id_to_name(item))
 # don't know why the following doesn't work:
 #for product in products:
 #    if product["id"] in item_ids:
 #        print("+ " + product["name"] + " (${0:.2f}".format(product["price"]) + ")")
+
+#for x in item_ids:
+#    ID = str(products[x-1]['id'])
+#    price = str(" (${0:.2f}".format(product["price"]) + ")")
+#    print(ID, products[x-1]['name'], price)
 
 print("------------")
 print("Thank you for shopping at Foods-R-Us!")
