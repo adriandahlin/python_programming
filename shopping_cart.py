@@ -36,33 +36,27 @@ while var == 0:
         break
 
 ## Print Receipt
-print("------------")
-print("Foods-R-Us")
-print("Phone: (123) 456-7890")
-print("Purchase Time:", time.strftime("%H:%M:%S"), time.strftime("%d/%m/%Y"))
+print('''------------
+Foods-R-Us
+Phone: (123) 456-7890
+Purchase Time:''')
+print(time.strftime("%H:%M:%S"), time.strftime("%d/%m/%Y"))
 print("------------")
 
 print("Items purchased today:")
 
-#def output(id):
-#  return [product for product in products if product["id"] == id]
-
 def id_to_name(id):
     for product in products:
-        if product["id"] == int(id):
+        if product["id"] == int(id): # data type is important here
             print("+ " + product["name"] + " (${0:.2f})".format(product["price"]))
 
 for item in item_ids:
     print(id_to_name(item))
+
 # don't know why the following doesn't work:
 #for product in products:
 #    if product["id"] in item_ids:
 #        print("+ " + product["name"] + " (${0:.2f}".format(product["price"]) + ")")
 
-#for x in item_ids:
-#    ID = str(products[x-1]['id'])
-#    price = str(" (${0:.2f}".format(product["price"]) + ")")
-#    print(ID, products[x-1]['name'], price)
-
-print("------------")
-print("Thank you for shopping at Foods-R-Us!")
+print('''------------
+Thank you for shopping at Foods-R-Us!''')
