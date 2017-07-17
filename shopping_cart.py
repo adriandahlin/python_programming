@@ -74,12 +74,12 @@ def grab_price(id):
             prices.append(product["price"])
 for item in item_ids:
     grab_price(item)
-print("Subtotal: $" + str(sum(prices)))
+print("Subtotal:                     $" + str(sum(prices)))
 
 #adds tax
 tax = sum(prices) * 0.08875
 total = sum(prices) * 1.08875
-print("Tax at 8.875%:" + " ${0:.2f}".format(tax))
+print("Tax at 8.875%:               " + " ${0:.2f}".format(tax))
 print("Your total for today comes to" + " ${0:.2f}".format(total))
 
 print('''------------
