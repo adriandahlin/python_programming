@@ -38,7 +38,7 @@ while var == 0:
     if num == 'DONE':
         break
     if num not in product_ids:
-        print("Please check your product ID and try again:")
+        print("Please check your product ID and try again.")
 
 ## Print Receipt
 print('''------------
