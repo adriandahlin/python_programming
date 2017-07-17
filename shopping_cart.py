@@ -45,13 +45,25 @@ print("------------")
 
 print("Items purchased today:")
 
+#prints item names and prices
 def id_to_name(id):
     for product in products:
         if product["id"] == int(id): # data type is important here
             print("+ " + product["name"] + " (${0:.2f})".format(product["price"]))
-
 for item in item_ids:
     print(id_to_name(item))
+
+#prints list of product prices
+prices = []
+def grab_price(id):
+    for product in products:
+        if product["id"] == int(id):
+            prices.append(product["price"])
+for item in item_ids:
+    grab_price(item)
+print(prices)
+
+#Currently the above prints a line with "None" after each item.
 
 # don't know why the following doesn't work:
 #for product in products:
