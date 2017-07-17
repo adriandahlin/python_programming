@@ -52,6 +52,7 @@ def id_to_name(id):
             print("+ " + product["name"] + " (${0:.2f})".format(product["price"]))
 for item in item_ids:
     print(id_to_name(item))
+#Currently the above prints a line with "None" after each item.
 
 #prints list of product prices
 prices = []
@@ -61,9 +62,7 @@ def grab_price(id):
             prices.append(product["price"])
 for item in item_ids:
     grab_price(item)
-print(prices)
-
-#Currently the above prints a line with "None" after each item.
+print("Your total for today comes to $" + str(sum(prices)))
 
 # don't know why the following doesn't work:
 #for product in products:
