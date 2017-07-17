@@ -37,7 +37,7 @@ while var == 0:
 
 ## Print Receipt
 print('''------------
-Foods-R-Us
+FOODS-R-US
 Phone: (123) 456-7890
 Purchase Time:''')
 print(time.strftime("%H:%M:%S"), time.strftime("%d/%m/%Y"))
@@ -45,16 +45,23 @@ print("------------")
 
 print("Items purchased today:")
 
-#prints item names and prices
+#prints item names and prices,
+# including an unwanted line with "None" after each item.
 def id_to_name(id):
     for product in products:
         if product["id"] == int(id): # data type is important here
             print("+ " + product["name"] + " (${0:.2f})".format(product["price"]))
 for item in item_ids:
     print(id_to_name(item))
-#Currently the above prints a line with "None" after each item.
 
-#prints list of product prices
+# don't know why the following doesn't work:
+#for product in products:
+#    if product["id"] in item_ids:
+#        print("+ " + product["name"] + " (${0:.2f}".format(product["price"]) + ")")
+
+print("------------")
+
+#prints sum of product prices
 prices = []
 def grab_price(id):
     for product in products:
@@ -62,12 +69,13 @@ def grab_price(id):
             prices.append(product["price"])
 for item in item_ids:
     grab_price(item)
-print("Your total for today comes to $" + str(sum(prices)))
+print("Subtotal: $" + str(sum(prices)))
 
-# don't know why the following doesn't work:
-#for product in products:
-#    if product["id"] in item_ids:
-#        print("+ " + product["name"] + " (${0:.2f}".format(product["price"]) + ")")
+#adds tax
+tax = sum(prices) * 0.08875
+total = sum(prices) * 1.08875
+print("Tax at 8.875%:" + " ${0:.2f}".format(tax))
+print("Your total for today comes to" + " ${0:.2f}".format(total))
 
 print('''------------
 Thank you for shopping at Foods-R-Us!''')
