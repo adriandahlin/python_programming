@@ -28,12 +28,17 @@ products = [
 
 var = 0
 item_ids = []
+product_ids = []
+for product in products:
+    product_ids.append(str(product["id"]))
 while var == 0:
     num = input("Please input a product identifier or 'DONE' if there are no more items: ")
-    if num != "DONE":
+    if num in product_ids:
         item_ids.append(num)
     if num == 'DONE':
         break
+    if num not in product_ids:
+        print("Please check your product ID and try again:")
 
 ## Print Receipt
 print('''------------
