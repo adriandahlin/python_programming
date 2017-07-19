@@ -56,12 +56,10 @@ def handler(inp):
 
 csv_file_path = "data/products.csv"
 
+rows = []
 with open(csv_file_path, "r") as csv_file:
     reader = csv.DictReader(csv_file) # assuming your CSV has headers, otherwise... csv.reader(csv_file)
     for row in reader:
-         print(row["name"])
+        rows.append(row)
 
-#with open(csv_file_path, "r") as csv_file:
-    #reader = csv.DictReader(csv_file) # assuming your CSV has headers, otherwise... csv.reader(csv_file)
-    #for row in reader:
-        #print(row["id"], row["name"], row["aisle"], row["department"], row["price"])
+print(len(rows))
