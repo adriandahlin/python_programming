@@ -1,18 +1,18 @@
 import csv
 
-print('''
-HELLO. YOU'RE THE BEST.
-
-There are 1,000,000 products.
-
-Please pick one of these five operations that you may conduct on these products:
-(case sensitive)
-- List
-- Show
-- Create
-- Update
-- Destroy
-''')
+# print('''
+# HELLO. YOU'RE THE BEST.
+#
+# There are 1,000,000 products.
+#
+# Please pick one of these five operations that you may conduct on these products:
+# (case sensitive)
+# - List
+# - Show
+# - Create
+# - Update
+# - Destroy
+# ''')
 
 operations = ["List", "list", "Show", "show", "Create", "create", "Update", "update", "Destroy", "destroy"]
 
@@ -59,4 +59,9 @@ csv_file_path = "data/products.csv"
 with open(csv_file_path, "r") as csv_file:
     reader = csv.DictReader(csv_file) # assuming your CSV has headers, otherwise... csv.reader(csv_file)
     for row in reader:
-        print(row["id"], row["name"], row["aisle"], row["department"], row["price"])
+         print(row["name"])
+
+#with open(csv_file_path, "r") as csv_file:
+    #reader = csv.DictReader(csv_file) # assuming your CSV has headers, otherwise... csv.reader(csv_file)
+    #for row in reader:
+        #print(row["id"], row["name"], row["aisle"], row["department"], row["price"])
