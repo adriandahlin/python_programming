@@ -1,13 +1,5 @@
 import csv
 
-# csv_file_path = "data/products.csv"
-#
-# rows = []
-# with open(csv_file_path, "r") as csv_file:
-#     reader = csv.DictReader(csv_file) # assuming your CSV has headers, otherwise... csv.reader(csv_file)
-#     for row in reader:
-#         rows.append(row)
-#
 # #print(len(rows))
 #
 # menu = '''
@@ -24,11 +16,25 @@ import csv
 # - Destroy
 # '''.format(len(rows))
 
-other_path = "data/other_products.csv"
-with open(other_path, "w") as csv_file:
-    writer = csv.DictWriter(csv_file, fieldnames=["id", "name", "aisle", "department", "price"])
-    writer.writeheader() # uses fieldnames set above
-    writer.writerow({"id": "1", "name": "Thing 1", "aisle": "7", "department": "shit", "price": "0.00"})
+csv_file_path = "data/products.csv"
+writing_path = "data/writing_products.csv"
+rows = []
+
+with open(csv_file_path, "r") as csv_file:
+    reader = csv.DictReader(csv_file) # assuming your CSV has headers, otherwise... csv.reader(csv_file)
+    for row in reader:
+        rows.append(row)
+
+with open(writing_path, "w") as new_csv_file:
+    writer = csv.DictWriter(new_csv_file, fieldnames=["id", "name", "aisle", "department", "price"])
+    writer.writeheader()
+    for row in rows:
+        writer.writerow(row)
+
+# with open(other_path, "w") as csv_file:
+#     writer = csv.DictWriter(csv_file, fieldnames=["id", "name", "aisle", "department", "price"])
+#     writer.writeheader() # uses fieldnames set above
+#     writer.writerow({"id": "1", "name": "Thing 1", "aisle": "7", "department": "shit", "price": "0.00"})
 
 # operations = ["List", "list", "Show", "show", "Create", "create", "Update", "update", "Destroy", "destroy"]
 
