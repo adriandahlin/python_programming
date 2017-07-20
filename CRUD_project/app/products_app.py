@@ -18,6 +18,7 @@ import csv
 
 csv_file_path = "data/products.csv"
 writing_path = "data/writing_products.csv"
+
 rows = []
 
 with open(csv_file_path, "r") as csv_file:
@@ -25,11 +26,12 @@ with open(csv_file_path, "r") as csv_file:
     for row in reader:
         rows.append(row)
 
-with open(writing_path, "w") as new_csv_file:
-    writer = csv.DictWriter(new_csv_file, fieldnames=["id", "name", "aisle", "department", "price"])
+with open(csv_file_path, "w") as csv_file:
+    writer = csv.DictWriter(csv_file, fieldnames=["id", "name", "aisle", "department", "price"])
     writer.writeheader()
     for row in rows:
         writer.writerow(row)
+    writer.writerow({"id": "21", "name": "Thing 1", "aisle": "babies with attitude", "department": "babies", "price": "0.00"})
 
 # with open(other_path, "w") as csv_file:
 #     writer = csv.DictWriter(csv_file, fieldnames=["id", "name", "aisle", "department", "price"])
