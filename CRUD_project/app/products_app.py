@@ -1,9 +1,6 @@
 import csv
 
-
-
 csv_file_path = "data/products.csv"
-#writing_path = "data/writing_products.csv"
 
 rows = []
 
@@ -48,7 +45,7 @@ def create_product():
         "name": product_name.title(),
         "aisle": product_aisle,
         "department": product_department,
-        "price": product_price,
+        "price": product_price
     }
     with open(csv_file_path, "w") as csv_file:
         writer = csv.DictWriter(csv_file, fieldnames=["id", "name", "aisle", "department", "price"])
@@ -77,9 +74,9 @@ def handler():
     if inp not in operations:
         print("Unrecognized Operation. Please choose one of: 'List', 'Show', 'Create', 'Update', or 'Destroy'.")
 
-print(handler())
+handler()
 
 with open(csv_file_path, "r") as csv_file:
     reader = csv.DictReader(csv_file)
-    for row in reader:
+   for row in reader:
         print(row["id"], row["name"], row["aisle"], row["department"], row["price"])
