@@ -1,30 +1,34 @@
 import csv
 
-csv_file_path = "data/products.csv"
+# csv_file_path = "data/products.csv"
+#
+# rows = []
+# with open(csv_file_path, "r") as csv_file:
+#     reader = csv.DictReader(csv_file) # assuming your CSV has headers, otherwise... csv.reader(csv_file)
+#     for row in reader:
+#         rows.append(row)
+#
+# #print(len(rows))
+#
+# menu = '''
+# HELLO. YOU'RE THE BEST.
+#
+# There are {0} products.
+#
+# Please pick one of these five operations that you may conduct on these products:
+# (case sensitive)
+# - List
+# - Show
+# - Create
+# - Update
+# - Destroy
+# '''.format(len(rows))
 
-rows = []
-with open(csv_file_path, "r") as csv_file:
-    reader = csv.DictReader(csv_file) # assuming your CSV has headers, otherwise... csv.reader(csv_file)
-    for row in reader:
-        rows.append(row)
-
-#print(len(rows))
-
-menu = '''
-HELLO. YOU'RE THE BEST.
-
-There are {0} products.
-
-Please pick one of these five operations that you may conduct on these products:
-(case sensitive)
-- List
-- Show
-- Create
-- Update
-- Destroy
-'''.format(len(rows))
-
-print(menu)
+other_path = "data/other_products.csv"
+with open(other_path, "w") as csv_file:
+    writer = csv.DictWriter(csv_file, fieldnames=["id", "name", "aisle", "department", "price"])
+    writer.writeheader() # uses fieldnames set above
+    writer.writerow({"id": "1", "name": "Thing 1", "aisle": "7", "department": "shit", "price": "0.00"})
 
 # operations = ["List", "list", "Show", "show", "Create", "create", "Update", "update", "Destroy", "destroy"]
 
