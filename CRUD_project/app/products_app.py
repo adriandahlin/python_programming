@@ -4,6 +4,13 @@ csv_file_path = "data/products.csv"
 
 rows = []
 
+# creating a list of all product ids
+# product_ids = []
+# with open(csv_file_path, "r") as csv_file:
+#     reader = csv.DictReader(csv_file)
+#     for row in reader:
+#         products_ids.append(row["id"])
+
 with open(csv_file_path, "r") as csv_file:
     reader = csv.DictReader(csv_file) # assuming your CSV has headers, otherwise... csv.reader(csv_file)
     for row in reader:
@@ -27,8 +34,6 @@ operations = ["List", "list", "Show", "show", "Create", "create", "Update", "upd
 
 inp = input(menu)
 
-product_ids = []
-
 def list_products():
     print("Your list of products:")
     with open(csv_file_path, "r") as csv_file:
@@ -40,9 +45,13 @@ def show_product():
     search_id = input("Enter the product's ID:")
     with open(csv_file_path, "r") as csv_file:
         reader = csv.DictReader(csv_file)
+        product_ids = []
         for row in reader:
+            product_ids.append(row["id"])
             if search_id == row["id"]:
                 print(row["id"], row["name"], row["aisle"], row["department"], row["price"])
+        if search_id not in product_ids:
+            print("We're sorry, we couldn't find that product ID.")
 
 def create_product():
     print("creating a product")
@@ -72,9 +81,14 @@ def create_product():
             print(row["id"], row["name"], row["aisle"], row["department"], row["price"])
 
 def update_product():
+    update_id: input("Enter the ID of the product you'd like to update:")
     with open(csv_file_path, "r") as csv_file:
         reader = csv.DictReader(csv_file)
         for row in reader:
+            if update_id == row["id"]:
+                print("The current info is:")
+                print(row["id"], row["name"], row["aisle"], row["department"], row["price"])
+
 
 def destroy_product():
     print("You are destroying a product.")
