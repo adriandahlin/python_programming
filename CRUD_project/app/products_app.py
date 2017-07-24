@@ -81,14 +81,33 @@ def create_product():
             print(row["id"], row["name"], row["aisle"], row["department"], row["price"])
 
 def update_product():
-    update_id: input("Enter the ID of the product you'd like to update:")
+    update_id = input("Enter the ID of the product you'd like to update:")
     with open(csv_file_path, "r") as csv_file:
         reader = csv.DictReader(csv_file)
+        product_ids = []
         for row in reader:
+            product_ids.append(row["id"])
             if update_id == row["id"]:
-                print("The current info is:")
+                print("The current info for that product is:")
                 print(row["id"], row["name"], row["aisle"], row["department"], row["price"])
-
+                product_name = input("Enter the product's updated name:")
+                product_aisle = input("Enter the updated aisle where the product sits:")
+                product_department = input("Enter the updated department the product is in:")
+                product_price = input("Enter the product's updated price:")
+        with open(csv_file_path, "w") as csv_file:
+            writer = csv.DictWriter(csv_file, fieldnames=["id", "name", "aisle", "department", "price"])
+            writer.writeheader()
+            for row in rows:
+                if update_id != row["id"]:
+                    writer.writerow(row)
+                if update_id == row["id"]:
+                    row["name"] = product_name
+                    row["aisle"] = product_aisle
+                    row["department"] = product_department
+                    row["price"] = product_price
+                    writer.writerow(row)
+        if update_id not in product_ids:
+            print("We're sorry, we couldn't find that product ID.")
 
 def destroy_product():
     print("You are destroying a product.")
