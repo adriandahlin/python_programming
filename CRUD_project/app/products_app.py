@@ -27,11 +27,22 @@ operations = ["List", "list", "Show", "show", "Create", "create", "Update", "upd
 
 inp = input(menu)
 
+product_ids = []
+
 def list_products():
-    print("You are listing a product or products.")
+    print("Your list of products:")
+    with open(csv_file_path, "r") as csv_file:
+        reader = csv.DictReader(csv_file)
+        for row in reader:
+            print(row["id"], row["name"], row["aisle"], row["department"], row["price"])
 
 def show_product():
-    print("You are showing a product.")
+    search_id = input("Enter the product's ID:")
+    with open(csv_file_path, "r") as csv_file:
+        reader = csv.DictReader(csv_file)
+        for row in reader:
+            if search_id == row["id"]:
+                print(row["id"], row["name"], row["aisle"], row["department"], row["price"])
 
 def create_product():
     print("creating a product")
@@ -53,9 +64,17 @@ def create_product():
         for row in rows:
             writer.writerow(row)
         writer.writerow(new_product)
+    print("--------")
+    print("See the inventory below including your added product:")
+    with open(csv_file_path, "r") as csv_file:
+        reader = csv.DictReader(csv_file)
+        for row in reader:
+            print(row["id"], row["name"], row["aisle"], row["department"], row["price"])
 
 def update_product():
-    print("You are updating a product.")
+    with open(csv_file_path, "r") as csv_file:
+        reader = csv.DictReader(csv_file)
+        for row in reader:
 
 def destroy_product():
     print("You are destroying a product.")
@@ -75,8 +94,3 @@ def handler():
         print("Unrecognized Operation. Please choose one of: 'List', 'Show', 'Create', 'Update', or 'Destroy'.")
 
 handler()
-
-with open(csv_file_path, "r") as csv_file:
-    reader = csv.DictReader(csv_file)
-   for row in reader:
-        print(row["id"], row["name"], row["aisle"], row["department"], row["price"])
