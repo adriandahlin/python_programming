@@ -4,13 +4,6 @@ csv_file_path = "data/products.csv"
 
 rows = []
 
-# creating a list of all product ids
-# product_ids = []
-# with open(csv_file_path, "r") as csv_file:
-#     reader = csv.DictReader(csv_file)
-#     for row in reader:
-#         products_ids.append(row["id"])
-
 with open(csv_file_path, "r") as csv_file:
     reader = csv.DictReader(csv_file) # assuming your CSV has headers, otherwise... csv.reader(csv_file)
     for row in reader:
@@ -106,23 +99,53 @@ def update_product():
                     row["department"] = product_department
                     row["price"] = product_price
                     writer.writerow(row)
+                    for row in rows:
+                        print("--------")
+                        print("Here is your current inventory")
+                        print(row["id"], row["name"], row["aisle"], row["department"], row["price"])
         if update_id not in product_ids:
             print("We're sorry, we couldn't find that product ID.")
 
 def destroy_product():
-    print("You are destroying a product.")
+    destroy_id = input("Enter the ID of the product you'd like to destroy:")
+    with open(csv_file_path, "r") as csv_file:
+        reader = csv.DictReader(csv_file)
+        product_ids = []
+        for row in reader:
+            product_ids.append(row["id"])
+            if destroy_id == row["id"]:
+                print("You are about to remove the following product from your list:")
+                print(row["id"], row["name"], row["aisle"], row["department"], row["price"])
+                continuation = input("Are you sure you want to remove this product? Y/N: ")
+                if continuation == "Y":
+                    with open(csv_file_path, "w") as csv_file:
+                        writer = csv.DictWriter(csv_file, fieldnames=["id", "name", "aisle", "department", "price"])
+                        writer.writeheader()
+                        for row in rows:
+                            if destroy_id != row["id"]:
+                                writer.writerow(row)
+                    with open(csv_file_path, "r") as csv_file:
+                        reader = csv.DictReader(csv_file)
+                        print("--------")
+                        print("Here is your current inventory:")
+                        for row in reader:
+                            print(row["id"], row["name"], row["aisle"], row["department"], row["price"])
+                if continuation != "Y":
+                    print("You have chosen not to delete a product at this time.")
+        if destroy_id not in product_ids:
+            print("We're sorry, we couldn't find that product ID.")
 
 def handler():
     if inp == "List":
-        print(list_products())
+        list_products()
     if inp == "Show":
-        print(show_product())
+        show_product()
     if inp == "Create":
         create_product()
     if inp == "Update":
-        print(update_product())
+        update_product()
     if inp == "Destroy":
-        print(destroy_product())
+        destroy_product()
     if inp not in operations:
         print("Unrecognized Operation. Please choose one of: 'List', 'Show', 'Create', 'Update', or 'Destroy'.")
 
