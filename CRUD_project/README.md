@@ -7,7 +7,7 @@ This script creates, reads, updates, and destroys records in a dictionary,
 Download the source code:
 
 ```shell
-git clone https://github.com/adriandahlin/python_programming/tree/master/CRUD_project
+git clone https://github.com/adriandahlin/python_programming.git
 cd python_programming/CRUD_project
 ```
 
